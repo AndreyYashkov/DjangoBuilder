@@ -1,3 +1,4 @@
+
 """mysite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from firstapp import views
+
 
 urlpatterns = [
+    path('', views.index, name='Rap'),
     path('admin/', admin.site.urls),
+
 ]
