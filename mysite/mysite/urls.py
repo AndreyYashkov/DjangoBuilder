@@ -1,4 +1,3 @@
-
 """mysite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -16,14 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from firstapp import views
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
-name = 'ivan'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path(f'{name}/', views.index, name='Rap'),
-    path('', include('firstapp.urls')),
+    path("admin/", admin.site.urls),
 
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
+    path("", include("users.urls")),
 ]
